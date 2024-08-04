@@ -22,7 +22,6 @@ li {
 }
 .btn,
 .slider-dot {
-  border: 5px solid rgb(0, 213, 255);
   position: absolute;
 }
 .slider-dot {
@@ -35,6 +34,7 @@ li {
   height: 25px;
   border-radius: 50%;
   background-color: tomato;
+  cursor: pointer;
 }
 .slider-dot > span:first-of-type {
   background-color: black;
