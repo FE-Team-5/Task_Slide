@@ -73,31 +73,29 @@ li {
   width: 300%;
   /* transform: translateX(-33.3333%); */
 }
-.sldier {
+.slider {
   border: 5px solid red;
   width: calc(100% / 3);
 }
-
-.sldier:nth-of-type(3) ~ .sldier {
+.slider:nth-of-type(3) ~ .sldier {
   display: none;
 }
-
-.sldier > div {
+.slider > div {
   position: relative;
   padding-top: 35%;
   overflow: hidden;
 }
-.sldier > div > * {
+.slider > div > * {
   position: absolute;
   top: 0;
   left: 0;
 }
-.sldier > div img {
+.slider > div img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.sldier > div p {
+.slider > div p {
   z-index: 1;
   background-color: black;
   color: white;
