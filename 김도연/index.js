@@ -11,36 +11,62 @@ const appendSlides = (arr) => {
   $slideUl.append(...arr);
 };
 
+$slideUl.style.cssText = `transform: translateX(-33.33%); transition: transform 0.5s ease-in-out`;
+slideArray.unshift(slideArray.pop());
+appendSlides(slideArray);
+
 const activeDots = () => {
   $dots.forEach((dot, i) => {
     const regex = new RegExp(i + 1, 'i');
-    dot.style.cssText = regex.test(slideArray[0].outerText)
+    dot.style.cssText = regex.test(slideArray[1].outerText)
       ? 'background-color: black; color: white'
       : 'background-color: tomato; color: black';
   });
 };
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const animateSlide = async (seconds) => {
+  await delay(seconds * 1000);
+  $slideUl.style.transition = 'none';
+  $slideUl.style.transform = `translateX(-33.33%)`;
+  appendSlides(slideArray);
+
+  await delay(50);
+  $slideUl.style.transition = `transform ${seconds}s ease-in-out`;
+};
+
 const handleButtonClick = (e) => {
   e.preventDefault();
-  const direction = e.target;
+  const direction = e.target.className;
 
-  if (direction.className.includes('prev')) {
-    slideArray.unshift(slideArray.pop());
-  } else slideArray.push(slideArray.shift());
+  if (direction.includes('prev')) slideArray.unshift(slideArray.pop());
+  else slideArray.push(slideArray.shift());
 
-  appendSlides(slideArray);
+  $slideUl.style.transform = direction.includes('prev')
+    ? `translateX(0%)`
+    : `translateX(-66.66%)`;
+
+  animateSlide(0.5);
   activeDots();
 };
 
-const handleDotClick = (e, index) => {
+const handleDotClick = (index) => {
   const originSlideArray = [...$slideItems];
   const newSlideArray = [
-    ...originSlideArray.slice(index),
-    ...originSlideArray.slice(0, index),
+    ...originSlideArray.slice(index - 1),
+    ...originSlideArray.slice(0, index - 1),
   ];
+  const currentSlide = parseInt(
+    slideArray[1].outerText.replace('슬라이드 번호', ''),
+  );
+  const transSeconds = Math.abs(currentSlide - (index + 1)) === 1 ? 0.5 : 0.4;
 
-  appendSlides(newSlideArray);
   slideArray = newSlideArray;
+  $slideUl.style.transform =
+    currentSlide > index + 1 ? `translateX(0%)` : `translateX(-66.66%)`;
+
+  animateSlide(transSeconds);
   activeDots();
 };
 
@@ -48,5 +74,5 @@ $prevBtn.addEventListener('click', handleButtonClick);
 $nextBtn.addEventListener('click', handleButtonClick);
 
 $dots.forEach((dot, i) => {
-  dot.addEventListener('click', (e) => handleDotClick(e, i));
+  dot.addEventListener('click', () => handleDotClick(i));
 });
