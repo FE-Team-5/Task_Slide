@@ -1,3 +1,4 @@
+const $sliderUl = document.querySelector(".sliderUl");
 const $sliderList = document.querySelectorAll(".slider");
 const $prevBtn = document.querySelector(".prev");
 const $nextBtn = document.querySelector(".next");
@@ -23,9 +24,17 @@ function getInitialSlideItems() {
 }
 
 $prevBtn.addEventListener("click", () => {
-  itemIndex = --itemIndex < 0 ? slideItemArr.length - 1 : itemIndex;
+  itemIndex = getValidIndex(--itemIndex);
 });
 
 $nextBtn.addEventListener("click", () => {
-  itemIndex = ++itemIndex > slideItemArr.length - 1 ? 0 : itemIndex;
+  itemIndex = getValidIndex(++itemIndex);
 });
+
+function getValidIndex(index) {
+  return index > slideItemArr.length - 1
+    ? 0
+    : index < 0
+    ? slideItemArr.length - 1
+    : index;
+}
