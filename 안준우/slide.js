@@ -4,8 +4,9 @@ let currentInx = 0;
 function slideInit() {
   const $sliderUI = document.querySelector(".sliderUl");
   const slideList = document.querySelectorAll(".slider");
-  //   const cloneLastItem = slideList[slideList.length - 1].cloneNode(true);
-  //   $sliderUI.prepend(cloneLastItem);
+  const cloneLastItem = slideList[slideList.length - 1].cloneNode(true);
+  slideList[slideList.length - 1].remove();
+  $sliderUI.prepend(cloneLastItem);
 }
 let onClickDelayFlag = false;
 function onClickNextBtn() {
