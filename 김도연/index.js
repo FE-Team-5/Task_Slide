@@ -5,6 +5,7 @@ const $nextBtn = document.querySelector('.btn.next');
 const $dots = document.querySelectorAll('.slider-dot > span');
 
 let slideArray = [...$slideItems];
+
 let isAnimating = false;
 
 const appendSlides = (arr) => {
