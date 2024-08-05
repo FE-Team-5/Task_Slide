@@ -100,3 +100,9 @@ function initEvent() {
 
 slideInit();
 initEvent();
+
+window.addEventListener("resize", () => {
+  slideWidth = $sliders[0].offsetWidth;
+  $sliderUl.style.transition = "none";
+  $sliderUl.style.transform = `translateX(-${slideWidth}px)`;
+});
