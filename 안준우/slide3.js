@@ -2,13 +2,18 @@ const slideList = document.querySelectorAll(".slider");
 const $dotContainer = document.querySelector(".slider-dot");
 const dotList = $dotContainer.querySelectorAll("span");
 
+const $sliderUl = document.querySelector(".sliderUl");
+const sliderClassName = ".slider";
+
 let currentIdx = 0;
 let onClickDelayFlag = false;
+const animateTime = 500; //ms
+
 //슬라이드 초기화
 function slideInit() {
-  const $sliderUl = document.querySelector(".sliderUl");
   $sliderUl.insertBefore(slideList[slideList.length - 1], slideList[0]);
 }
+
 function moveDot(index) {
   dotList.forEach((element, i) => {
     if (index === i) {
@@ -24,9 +29,10 @@ function moveDot(index) {
 function moveToNext(e, index) {
   if (onClickDelayFlag) return;
   onClickDelayFlag = true;
-  const $sliderUl = document.querySelector(".sliderUl");
-  const $firstSlide = $sliderUl.querySelector(".slider:first-child");
-  const $thirdSlide = $sliderUl.querySelector(".slider:nth-child(3)");
+  const $firstSlide = $sliderUl.querySelector(sliderClassName + ":first-child");
+  const $thirdSlide = $sliderUl.querySelector(
+    sliderClassName + ":nth-child(3)"
+  );
   $sliderUl.insertBefore(slideList[index], $thirdSlide);
   /*
     4 - 1 - 2 에서 4를 클릭시
@@ -36,29 +42,30 @@ function moveToNext(e, index) {
   if (slideList[index] === $firstSlide) {
     $sliderUl.insertBefore($thirdSlide, slideList[currentIdx]);
   }
-  $sliderUl.style.transition = "0.5s";
-  $sliderUl.style.transform = `translateX(-66.6666%)`;
+  $sliderUl.style.transition = animateTime / 1000 + "s";
+  $sliderUl.style.transform = "translateX(-66.6666%)";
   moveDot(index);
   currentIdx = index;
 
   setTimeout(() => {
-    const $firstSlide = $sliderUl.querySelector(".slider:first-child");
+    const $firstSlide = $sliderUl.querySelector(
+      sliderClassName + ":first-child"
+    );
     $sliderUl.style.transition = "none";
     $sliderUl.appendChild($firstSlide);
-    $sliderUl.style.transform = `translateX(-33.3333%)`;
+    $sliderUl.style.transform = "translateX(-33.3333%)";
     onClickDelayFlag = false;
-  }, 500);
+  }, animateTime);
 }
 
 function moveToPrev(e, index) {
   if (onClickDelayFlag) return;
   onClickDelayFlag = true;
-  const $sliderUl = document.querySelector(".sliderUl");
-  const $firstSlide = $sliderUl.querySelector(".slider:first-child");
+  const $firstSlide = $sliderUl.querySelector(sliderClassName + ":first-child");
   $sliderUl.appendChild($firstSlide);
   $sliderUl.insertBefore(slideList[index], slideList[currentIdx]);
-  $sliderUl.style.transition = "0.5s";
-  $sliderUl.style.transform = `translateX(0)`;
+  $sliderUl.style.transition = animateTime / 1000 + "s";
+  $sliderUl.style.transform = "translateX(0)";
   moveDot(index);
   currentIdx = index;
   setTimeout(() => {
@@ -67,10 +74,11 @@ function moveToPrev(e, index) {
       slideList[index - 1 < 0 ? slideList.length - 1 : index - 1],
       slideList[index]
     );
-    $sliderUl.style.transform = `translateX(-33.3333%)`;
+    $sliderUl.style.transform = "translateX(-33.3333%)";
     onClickDelayFlag = false;
-  }, 500);
+  }, animateTime);
 }
+
 function onClickDotBtn(e, index) {
   if (currentIdx === index) return;
   if (currentIdx < index) moveToNext(e, index);
