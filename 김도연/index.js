@@ -5,6 +5,7 @@ const $nextBtn = document.querySelector('.btn.next');
 const $dots = document.querySelectorAll('.slider-dot > span');
 
 let slideArray = [...$slideItems];
+
 let isAnimating = false;
 
 const appendSlides = (arr) => {
@@ -41,8 +42,7 @@ const animateSlide = async (seconds) => {
 const handleButtonClick = async (e) => {
   e.preventDefault();
   if (isAnimating) return;
-
-  const direction = e.target.className;
+  const direction = e.currentTarget.className;
 
   if (direction.includes('prev')) slideArray.unshift(slideArray.pop());
   else slideArray.push(slideArray.shift());
@@ -51,11 +51,12 @@ const handleButtonClick = async (e) => {
     ? `translateX(0%)`
     : `translateX(-66.66%)`;
 
-  animateSlide(0.5);
+  await animateSlide(0.5);
   activeDots();
 };
 
-const handleDotClick = (index) => {
+const handleDotClick = async (index) => {
+  if (isAnimating) return;
   const originSlideArray = [...$slideItems];
   const newSlideArray = [
     ...originSlideArray.slice(index - 1),
@@ -70,7 +71,7 @@ const handleDotClick = (index) => {
   $slideUl.style.transform =
     currentSlide > index + 1 ? `translateX(0%)` : `translateX(-66.66%)`;
 
-  animateSlide(transSeconds);
+  await animateSlide(transSeconds);
   activeDots();
 };
 
