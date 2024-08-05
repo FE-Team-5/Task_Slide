@@ -2,11 +2,17 @@ const $slideUl = document.querySelector('.sliderUl');
 const $slideItems = document.querySelectorAll('.slider');
 const $prevBtn = document.querySelector('.btn.prev');
 const $nextBtn = document.querySelector('.btn.next');
-const $dots = document.querySelectorAll('.slider-dot > span');
+const $slideDots = document.querySelector('.slider-dot');
 
+// $slideItems는 NodeList이기 때문에 pop()과 같은 배열 함수를 사용하지 못함
 let slideArray = [...$slideItems];
-
 let isAnimating = false;
+
+for (let i = 0; i < $slideItems.length; i++) {
+  $slideDots.innerHTML += `<span class='dot${i + 1}'></span>`;
+}
+
+const $dots = document.querySelectorAll('.slider-dot > span');
 
 const appendSlides = (arr) => {
   $slideUl.innerHTML = '';
@@ -66,6 +72,8 @@ const handleDotClick = async (index) => {
     slideArray[1].outerText.replace('슬라이드 번호', ''),
   );
   const transSeconds = Math.abs(currentSlide - (index + 1)) === 1 ? 0.5 : 0.4;
+
+  if (index + 1 === currentSlide) return;
 
   slideArray = newSlideArray;
   $slideUl.style.transform =
