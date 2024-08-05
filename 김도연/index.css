@@ -8,21 +8,19 @@ li {
 }
 
 .slide {
-  /* border: 5px solid lightgray; */
   max-width: 600px;
   width: 80%;
   margin: auto;
   position: relative;
 }
-/* .slide-wrap {
-  border: 1px solid red;
-} */
+.slide-wrap {
+  border: 10px solid #d7fc45;
+}
 .btn {
   cursor: pointer;
 }
 .btn,
 .slider-dot {
-  /* border: 5px solid rgb(0, 213, 255); */
   position: absolute;
 }
 .slider-dot {
@@ -31,20 +29,18 @@ li {
 }
 .slider-dot > span {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background-color: tomato;
-
-  /* style 수정 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #d7fc45;
   cursor: pointer;
 }
 .slider-dot > span:first-of-type {
-  background-color: black;
+  background-color: #060604;
   color: white;
+}
+.slider-dot > span:hover {
+  background-color: #060604;
 }
 .dot1 {
   left: 0;
@@ -63,11 +59,19 @@ li {
   top: 50%;
 
   /* style 수정 */
-  padding: 4px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 4px;
-  background: rgb(0 0 0 / 20%);
-  color: black;
+  border-radius: 50%;
+  background-color: #d7fc45;
+  color: #060604;
+}
+/* style 추가 */
+.btn:hover {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 50%;
+  background-color: #060604;
+  color: #d7fc45;
 }
 
 .prev {
@@ -77,17 +81,15 @@ li {
   right: -50px;
 }
 .slide-wrap {
-  /* border: 5px solid lightgreen; */
   overflow: hidden;
 }
 .sliderUl {
-  /* border: 5px slateblue solid; */
   display: flex;
   width: 300%;
-  /* transform: translateX(-33.3333%); */
+  transform: translateX(-33.33%);
+  transition: transform 0.5s ease-in-out;
 }
 .slider {
-  /* border: 5px solid red; */
   width: calc(100% / 3);
 }
 .slider:nth-of-type(3) ~ .slider {
@@ -110,7 +112,7 @@ li {
 }
 .slider > div p {
   z-index: 1;
-  background-color: black;
+  background-color: rgb(6 6 4 / 70%);
   color: white;
   padding: 2rem;
 }
