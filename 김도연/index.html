@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./index.css" />
     <script src="./index.js" defer></script>
   </head>
@@ -11,7 +18,7 @@
     <main>
       <h1>슬라이드 연습</h1>
       <section class="slide">
-        <h2>슬라이드 섹션영역</h2>
+        <!-- <h2>슬라이드 섹션영역</h2> -->
         <div class="slide-wrap">
           <ul class="sliderUl">
             <li class="slider">
@@ -43,13 +50,17 @@
             </li>
           </ul>
         </div>
-        <button class="btn prev">이전</button>
-        <button class="btn next">다음</button>
+        <button class="btn prev">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="btn next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="slider-dot">
-          <span class="dot1">1</span>
-          <span class="dot2">2</span>
-          <span class="dot3">3</span>
-          <span class="dot4">4</span>
+          <span class="dot1"></span>
+          <span class="dot2"></span>
+          <span class="dot3"></span>
+          <span class="dot4"></span>
         </div>
       </section>
     </main>

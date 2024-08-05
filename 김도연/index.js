@@ -12,7 +12,6 @@ const appendSlides = (arr) => {
   $slideUl.append(...arr);
 };
 
-$slideUl.style.cssText = `transform: translateX(-33.33%); transition: transform 0.5s ease-in-out`;
 slideArray.unshift(slideArray.pop());
 appendSlides(slideArray);
 
@@ -20,8 +19,8 @@ const activeDots = () => {
   $dots.forEach((dot, i) => {
     const regex = new RegExp(i + 1, 'i');
     dot.style.cssText = regex.test(slideArray[1].outerText)
-      ? 'background-color: black; color: white'
-      : 'background-color: tomato; color: black';
+      ? 'background-color: #060604'
+      : 'background-color: #d7fc45';
   });
 };
 
