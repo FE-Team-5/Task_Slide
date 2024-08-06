@@ -19,6 +19,7 @@ li {
 }
 .btn {
   cursor: pointer;
+  z-index: 99;
 }
 .btn,
 .slider-dot {
@@ -42,15 +43,19 @@ li {
 }
 .dot1 {
   left: 0;
+  text-align: center;
 }
 .dot2 {
   left: 30px;
+  text-align: center;
 }
 .dot3 {
   left: 60px;
+  text-align: center;
 }
 .dot4 {
   left: 90px;
+  text-align: center;
 }
 
 .btn {
@@ -64,22 +69,24 @@ li {
   right: -50px;
 }
 .slide-wrap {
-  border: 5px solid lightgreen;
-  /* overflow: hidden; */
+  /* border: 5px solid lightgreen; */
+  overflow: hidden;
 }
 .sliderUl {
-  border: 5px slateblue solid;
+  /* border: 5px slateblue solid; */
   display: flex;
   width: 300%;
   /* transform: translateX(-33.3333%); */
 }
 .slider {
-  border: 5px solid red;
+  /* border: 5px solid red; */
   width: calc(100% / 3);
 }
-.slider:nth-of-type(3) ~ .sldier {
+
+.slider:nth-of-type(3) ~ .slider {
   display: none;
 }
+
 .slider > div {
   position: relative;
   padding-top: 35%;
